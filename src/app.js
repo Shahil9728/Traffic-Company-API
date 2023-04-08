@@ -36,18 +36,18 @@ app.get('/traffic', async (req, res) => {
                 const response = await axios.get(`https://pin.trafficcompany.com/api/v1/sendpin?access-token=${accesstoken}&ip=${ip}&msisdn=${msisdn}&pi=${pi}&click_id=${clickid}&sub_id=${sub_id}`)
                 if (response.data.status == "ok") {
                     tracker = response.data.tracker;
-                    res.render('verifypin.hbs', { errorMessage: response.data.message });
+                    return res.render('verifypin.hbs', { errorMessage: response.data.message });
                 }
             } catch (error) {
                 // res.render('verifypin.hbs', { errorMessage: "Pin Sent" ,color:"true"});
-                res.render('index.hbs', { errorMessage: error.response.data.message });
+                return res.render('index.hbs', { errorMessage: error.response.data.message });
             }
         } else {
-            res.render("index.hbs", { errorMessage: "Mobile number is not Valid" })
+            return res.render("index.hbs", { errorMessage: "Mobile number is not Valid" })
         }
     }
     else {
-        res.render('index.hbs', { errorMessage: "Please fill all the required feild" });
+        return res.render('index.hbs', { errorMessage: "Please fill all the required feild" });
     }
 
 })
@@ -61,31 +61,31 @@ app.get('/verify', async (req, res) => {
             try {
                 const response = await axios.get(`https://pin.trafficcompany.com/api/v1/verify?tracker=${tracker}&pin=${pin}`)
                 if (response.data.status == "ok") {
-                    res.render('account.hbs', { errorMessage: response.data.message,color:true });
+                    return res.render('account.hbs', { errorMessage: response.data.message,color:true });
                     login=true;
                 }
             } catch (error) {
-                // res.render('account.hbs', { errorMessage: "You are logged In",color:true});
-                res.render('verifypin.hbs', { errorMessage: error.response.data.description });
+                // return res.render('account.hbs', { errorMessage: "You are logged In",color:true});
+                return res.render('verifypin.hbs', { errorMessage: error.response.data.description });
             }
         }else
         {
-            res.render('verifypin.hbs',{errorMessage:"Invalid pin"});
+            return res.render('verifypin.hbs',{errorMessage:"Invalid pin"});
         }
     }
     else
     {
-        res.redirect('/');
+        return res.redirect('/');
     }
 })
 
 app.get('/account', (req, res) => {
     if(login!=false)
     {
-        res.render('account.hbs');
+        return res.render('account.hbs');
     }else
     {
-        res.redirect('/');
+        return res.redirect('/');
     }
 })
 
