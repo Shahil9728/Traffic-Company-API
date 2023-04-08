@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traffic API</title>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="/style.css">
+
+</head>
+
+<body>
+
+    {{#if errorMessage}}
+    <div class="error-message" id="error-div">
+        <div class="error">
+            <p style="margin-right: 15px;margin-bottom:0px">Error: {{errorMessage}}</p>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close" id="close-btn">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
+    {{/if}}
+
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">
+            <img src="logo1.png" alt="" width="25px" height="30px">
+            Tatic</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link nav-head" href="https://www.trafficcompany.com/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-head" href="https://www.trafficcompany.com/advertisers">Advertisers</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-head" href="https://www.trafficcompany.com/jobs">Jobs</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-head" href="https://www.trafficcompany.com/blog">Blog</a>
+                </li>
+                <li class="nav-item special-btn">
+                    <a class="nav-link nav-head" href="#">Sign In</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <section>
+        <div class="lottie">
+            <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_HF41OKnIK9.json" background="transparent"
+                speed="1" loop autoplay class="lottie-anim"></lottie-player>
+                <p>Maximize your website's potential with our traffic management solutions.</p>
+        </div>
+        <div class="main">
+            <div class="login-box">
+                <h2>Register</h2>
+                <form id="myForm" action="/traffic" method="get">
+                    <div class="user-box">
+                        <input type="text" name="accesstoken" required="true">
+                        <label>Access Token *</label>
+                    </div>
+                    <div class="user-box">
+                        <input type="text" name="ip" required="true">
+                        <label>IP *</label>
+                    </div>
+                    <div class="user-box">
+                        <input type="number" name="msisdn" required="true">
+                        <label>Phone Number *</label>
+                    </div>
+                    <div class="user-box">
+                        <input type="text" name="pi" required="false">
+                        <label>Promo Name</label>
+                    </div>
+                    <div class="user-box">
+                        <input type="text" name="clickid" required="false">
+                        <label>Click Id</label>
+                    </div>
+                    <a href="#">
+                        <button type="submit" class="submit-btn">
+                            <span></span>
+                            <span></span>
+                            Submit
+                        </button>
+                    </a>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const closeBtn = document.querySelector("#close-btn");
+        const errorDiv = document.querySelector("#error-div");
+
+        closeBtn.addEventListener("click", () => {
+            console.log("hello");
+            errorDiv.style.display = "none";
+        });
+
+        setTimeout(function(){
+            errorDiv.style.display='none';
+        },5000);
+    </script>
+
+</body>
+
+</html>
